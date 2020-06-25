@@ -13,6 +13,7 @@ tflite_compile: build_image_tflite_compile
 		-v ${CURDIR}/tflite:/tflite/results \
 		${TF_LITE_BUILDER_IMAGE_NAME}
 
+.PHONY: build_image
 build_image:
 	docker build -t ${BUILDER_IMAGE_NAME} -f build.dockerfile .
 
@@ -21,6 +22,7 @@ build_file:
 		-v ${CURDIR}:/app/results \
 		${BUILDER_IMAGE_NAME}
 
+.PHONY: build
 build: build_file
 
 
@@ -33,8 +35,9 @@ test: build_test
 		${TEST_IMAGE_NAME}
 
 
+.PHONY: update_lambda
 update_lambda: test
 	./upload.sh
 
 
-.PHONY: build_image update_lambda
+  

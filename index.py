@@ -24,7 +24,7 @@ s3_client = boto3.client('s3')
 model_bucket = 'data-science-temporary'
 model_key = 'tf-models/resnet50.tflite'
 
-model_local_path = './resnet50.tflite'
+model_local_path = '/tmp/resnet50.tflite'
 
 
 with open('imagenet_classes.json') as f_in:
@@ -114,14 +114,14 @@ def decode_predictions(preds, top=3):
     for pred in preds:
         top_indices = pred.argsort()[-top:][::-1]
 
-        result = {imagenet_classes[i]: pred[i] for i in top_indices}
+        result = {imagenet_classes[i]: float(pred[i]) for i in top_indices}
         results.append(result)
 
     return results
 
 
 def handler(event, context):
-    print(event)
+    # print(event)
 
     img = download_image(event['url'])
     preds = predict(img)

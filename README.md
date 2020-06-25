@@ -37,22 +37,27 @@ https://github.com/tpaul1611/python_tflite_for_amazonlinux
 
 
 ```
-TF_LITE_BUILDER=tflite_amazonlinux
-docker build -f tflite-compile.dockerfile -t ${TF_LITE_BUILDER} .
+TF_LITE_BUILDER_IMAGE_NAME=tflite_amazonlinux
+docker build -f tflite-compile.dockerfile -t ${TF_LITE_BUILDER_IMAGE_NAME} .
 ```
 
 ```
 docker run --rm \
     -v $(pwd)/tflite:/tflite/results \
-    ${TF_LITE_BUILDER}
+    ${TF_LITE_BUILDER_IMAGE_NAME}
 ```
 
 Result: `tflite/tflite_runtime-2.2.0-cp37-cp37m-linux_x86_64.whl`
+
+
+Build the zip file 
 
 ```
 BUILDER_IMAGE_NAME=tflite_build_lambda
 docker build -t ${BUILDER_IMAGE_NAME} -f build.dockerfile .
 ```
+
+Copy it
 
 ```
 docker run --rm \
@@ -71,12 +76,17 @@ docker run --rm \
 Testing!
 
 
+Build the test container
 ```
 TEST_IMAGE_NAME=tflite_test_lambda
 docker build -t ${TEST_IMAGE_NAME} -f test.dockerfile .
+```
 
+Run the test
+
+```
 docker run --rm \
-    -v $(pwd)/resnet50.tflite:/app/resnet50.tflite \
+    -v $(pwd)/resnet50.tflite:/tmp/resnet50.tflite \
     ${TEST_IMAGE_NAME}
 
 ```

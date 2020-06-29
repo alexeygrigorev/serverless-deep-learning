@@ -25,7 +25,9 @@ Alternative: Use TF Lite
 
 1. Compile it for the AWS Lambda environment
 2. Convert your Keras model to TF-Lite format
-3. 
+3. Build a zip file with the lambda code
+4. Test it
+5. Deploy the code to AWS Lambda
 
 
 ### Compile TF-Lite
@@ -51,7 +53,6 @@ docker run --rm \
 The result (for python 3.7) is already in the `tflite` folder: 
 
 * [`tflite/tflite_runtime-2.2.0-cp37-cp37m-linux_x86_64.whl`](https://github.com/alexeygrigorev/serverless-deep-learning/blob/master/tflite/tflite_runtime-2.2.0-cp37-cp37m-linux_x86_64.whl)
-
 
 
 

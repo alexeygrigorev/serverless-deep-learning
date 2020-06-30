@@ -1,5 +1,9 @@
 # Serverless Deep Learning
 
+Presentation:
+
+* https://www.slideshare.net/AlexeyGrigorev/serverless-deep-learning
+
 ## AWS Lambda limits
 
 Imagine you want to use AWS Lambda for serving TenorFlow models
